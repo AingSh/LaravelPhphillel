@@ -30,4 +30,10 @@ class UserController
         $posts = Post::where('category_id', '=' , $category_id )->where('user_id', '=' , $id)->get();
         return view('user/categories', compact('posts','category_id'));
     }
+
+    //тут пока не раздуплился что к чему
+//    public function tags($id, $category_id,$tag_id)
+//    {
+//        $post = Post::whereHas('post_tag')
+//    }
 }

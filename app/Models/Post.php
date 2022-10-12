@@ -20,4 +20,9 @@ class Post extends Model
         return $this->belongsTo(User::class);// к конкретной юзеру относится
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();// к конкретной категории относится
+    }
+
 }
