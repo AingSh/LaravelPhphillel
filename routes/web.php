@@ -23,12 +23,11 @@ use App\Http\Controllers\TagController;
 Route::get('/', [HomeController::class, 'index']);
 
 
-//Юзер  роут , вообще за автора не въехал +-
+//Юзер  роут , за автора  уже въехал +-
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/author/{id}', [UserController::class, 'posts'])->name('user.posts');
 Route::get('/author/{id}/category/{category_id}', [UserController::class, 'categories'])->name('user.categories');
-Route::get('/author/{id}/category/{category_id}/tag/{tag_id}', [UserController::class, 'tags'])->name('user.tags');
-
+Route::get('/author/{id}/category/{category_id}/tag/{tag_id}', [UserController::class, 'categoryTags'])->name('user.categoryTags');
 
 
 //Категории , все
@@ -37,7 +36,7 @@ Route::get('/category/{category}', [CategoryController::class, 'categories']);
 //tags , все
 Route::get('/tag/{tag}', [TagController::class, 'posts']);
 
-//Админка
+//Админка попозже с ней
 Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.post');
 Route::get('/admin/create', [AdminPostController::class, 'create'])->name('admin.post.create');
 Route::post('/admin/store', [AdminPostController::class, 'store'])->name('admin.post.create');
