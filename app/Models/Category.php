@@ -10,6 +10,12 @@ class Category extends Model
 {
     use SoftDeletes , HasFactory;
 
+    protected $fillable = [
+        'title',
+        'slug',
+    ];
+
+
     public function posts()
     {
         return $this->hasMany(Post::class, 'category_id');// ко многим и связь между таблицами
