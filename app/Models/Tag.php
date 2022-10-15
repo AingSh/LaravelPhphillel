@@ -10,6 +10,11 @@ class Tag extends Model
 {
     use SoftDeletes, HasFactory;
 
+    protected $fillable = [
+        'title',
+        'slug',
+    ];
+
     public function posts()
     {
         return $this->belongsToMany(Post::class,'post_tag')->withTimestamps();// к конкретной категории относится
