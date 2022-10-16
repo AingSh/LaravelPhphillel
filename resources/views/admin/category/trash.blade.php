@@ -22,7 +22,7 @@
                 <td>{{$category->slug}}</td>
                 <td>
                     <a href="{{ route('admin.category.restore', ['id' => $category->id])}}" class="btn btn-info">Возродить</a>
-{{--                    <a href="{{ route('admin.category.forceDelete', ['id' => $category->id])}}" class="btn btn-danger">Удалить на всегда</a>--}}
+                    <a href="{{ route('admin.category.forceDelete', ['id' => $category->id])}}" class="btn btn-danger">Удалить на всегда</a>
                 </td>
             </tr>
         @empty

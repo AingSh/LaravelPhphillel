@@ -81,16 +81,15 @@ class AdminCategoryController extends Controller
         return redirect()->route('admin.category');
     }
 
-    // не працюэ
-//    public function forceDelete($id)
-//    {
-//        $category = Category::onlyTrashed()->where('id', $id)->first();
-//        foreach ($category->posts as $post) {
-//            $post->tags()->detach();
-//            $post->forceDelete();
-//        }
-//        $category->forceDelete();
-//        return redirect()->route('admin.category');
-//    }
 
+    public function forceDelete($id)
+    {
+        $category = Category::onlyTrashed()->where('id', $id)->first();;
+        foreach ($category->posts as $post) {
+            $post->tags()->detach();
+            $post->forceDelete();
+        }
+        $category->forceDelete();
+        return redirect()->route('admin.category');
+    }
 }
