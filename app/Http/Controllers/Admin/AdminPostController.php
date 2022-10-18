@@ -8,9 +8,15 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPostController extends Controller
 {
+    public function  __construct()
+    {
+        $this->authorizeResource(Post::class,'post');
+    }
+
     public function index()
     {
         $posts = Post::paginate(5);
@@ -41,6 +47,7 @@ class AdminPostController extends Controller
 
     public function create()
     {
+        dd(Auth::id());
         $post = new Post();
         $categories = Category::all();
         $tags = Tag::all();
