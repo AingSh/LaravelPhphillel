@@ -5,6 +5,7 @@ use \App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
@@ -51,8 +52,6 @@ Route::get('/category/{category}', [CategoryController::class, 'categories']);
 Route::get('/tag/{tag}', [TagController::class, 'posts']);
 
 
-
-
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -97,4 +96,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
+//Добавляем комемнты по уроку
+Route::get('/page/post', [PageController::class, 'index'])->name('page');
+Route::get('/page/{id}', [PageController::class, 'show'])->name('page.show');
+Route::post('/page/comment/{id}', [PageController::class, 'addComment'])->name('page.add.comment');

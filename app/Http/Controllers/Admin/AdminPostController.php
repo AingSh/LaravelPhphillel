@@ -7,20 +7,25 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPostController extends Controller
 {
-    public function  __construct()
-    {
-        $this->authorizeResource(Post::class,'post');
-    }
+//    public function  __construct()
+//    {
+//        $this->authorizeResource(Post::class,'post');
+//    }
 
     public function index()
     {
         $posts = Post::paginate(5);
 
+//        Debugbar::info($object);
+//        Debugbar::error('LOLKEK CHEBUREK!!');
+//        Debugbar::warning('Watch outTETSWORK…');
+//        Debugbar::addMessage('Another message', 'mylabel');
         return view('admin/post/index', compact('posts'));
     }
 
@@ -47,7 +52,7 @@ class AdminPostController extends Controller
 
     public function create()
     {
-        dd(Auth::id());
+//        $this->authorize('create', Post::class);
         $post = new Post();
         $categories = Category::all();
         $tags = Tag::all();
@@ -74,6 +79,7 @@ class AdminPostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $this->authorize('update', $post);
         $categories = Category::all();
         $tags = Tag::all();
         $users = User::all();

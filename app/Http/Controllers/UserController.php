@@ -14,9 +14,9 @@ class UserController
 {
     public function index()
     {
-
-        $users = User::paginate(25);
-        return view('user/index', compact('users'));
+//        $users = User::paginate(25);
+        $users = User::with(['posts', 'posts.tags'])->get();
+        return view('user/index2', compact('users'));
     }
 
     public function posts($id)

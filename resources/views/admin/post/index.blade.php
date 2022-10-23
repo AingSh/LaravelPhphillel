@@ -2,7 +2,9 @@
 
 
 @section('content')
-    <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Создать Новый Пост</a>
+    @can('create',\App\Models\Post::class)
+        <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Создать Новый Пост</a>
+    @endcan
     <a href="{{ route('admin.post.trash') }}" class="btn btn-danger">Корзина</a>
     <table class="table">
         <thead>
@@ -24,10 +26,12 @@
                 <td># {{$post->user_id}}</td>
                 <td># {{$post->category_id}}</td>
                 <td>
-                    <a href="{{ route('admin.post.edit', ['id' => $post->id]) }}"
-                       class="btn btn-primary">Редактировать</a>
-                    <a href="{{ route('admin.post.destroy', ['id' => $post->id]) }}" class="btn btn-danger">
-                        Удалить</a>
+                    @can('update',$post)
+                        <a href="{{ route('admin.post.edit', ['id' => $post->id]) }}"
+                           class="btn btn-primary">Редактировать</a>
+                        <a href="{{ route('admin.post.destroy', ['id' => $post->id]) }}" class="btn btn-danger">
+                            Удалить</a>
+                    @endcan
                     <a href="{{ route('admin.post.show', ['id' => $post->id]) }}" class="btn btn-info">Показать</a>
                 </td>
             </tr>

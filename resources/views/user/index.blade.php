@@ -33,12 +33,12 @@
         </tbody>
 
     </table>
-    <div class="d-grid gap-2 d-md-block">
-        <a href="{{ $users->previousPageUrl() }}" class="btn btn-secondary " tabindex="-1" role="button"
-           aria-disabled="true">Назад</a>
-        <a href="{{ $users->nextPageUrl() }}" class="btn btn-primary " tabindex="-1" role="button"
-           aria-disabled="true">Далее</a>
-    </div>
+{{--    <div class="d-grid gap-2 d-md-block">--}}
+{{--        <a href="{{ $users->previousPageUrl() }}" class="btn btn-secondary " tabindex="-1" role="button"--}}
+{{--           aria-disabled="true">Назад</a>--}}
+{{--        <a href="{{ $users->nextPageUrl() }}" class="btn btn-primary " tabindex="-1" role="button"--}}
+{{--           aria-disabled="true">Далее</a>--}}
+{{--    </div>--}}
 @endsection
 
 

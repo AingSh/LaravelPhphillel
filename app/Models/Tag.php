@@ -19,4 +19,6 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class,'post_tag')->withTimestamps();// к конкретной категории относится
     }
+
+
 }
