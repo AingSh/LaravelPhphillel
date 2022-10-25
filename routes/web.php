@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Oauth\GitHubController;
 use \App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPanelController;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 //main storage /
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 
 
 //Юзер  роут , за автора  уже въехал +-
@@ -53,50 +55,57 @@ Route::get('/tag/{tag}', [TagController::class, 'posts']);
 
 
 Route::middleware(['auth'])->group(function () {
-
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::prefix('admin')->group(function () {
+        Route::get('/panel', [AdminPanelController::class, 'index'])->name('admin.panel');
 
-    Route::get('/admin/panel', [AdminPanelController::class, 'index'])->name('admin.panel');
-
-    //Админка на посты
-    Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.post');
-    Route::get('/admin/post/trash', [AdminPostController::class, 'trash'])->name('admin.post.trash');
-    Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('admin.post.create');
-    Route::get('/admin/post/{id}', [AdminPostController::class, 'show'])->name('admin.post.show');
-    Route::post('/admin/post/store', [AdminPostController::class, 'store'])->name('admin.post.store');
-    Route::get('/admin/post/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.post.edit');
-    Route::post('/admin/post/update', [AdminPostController::class, 'update'])->name('admin.post.update');
-    Route::get('/admin/post/{id}/destroy', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
-    Route::get('/admin/post/restore/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
-    Route::get('/admin/post/forceDelete/{id}', [AdminPostController::class, 'forceDelete'])->name('admin.post.forceDelete');
-
-    //Админка на категории
-    Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name('admin.category');
-    Route::get('/admin/category/trash', [AdminCategoryController::class, 'trash'])->name('admin.category.trash');
-    Route::get('/admin/category/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
-    Route::get('/admin/category/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
-    Route::post('/admin/category/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
-    Route::get('/admin/category/{id}/edit', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::post('/admin/category/update', [AdminCategoryController::class, 'update'])->name('admin.category.update');
-    Route::get('/admin/category/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
-    Route::get('/admin/category/restore/{id}', [AdminCategoryController::class, 'restore'])->name('admin.category.restore');
-    Route::get('/admin/category/forceDelete/{id}', [AdminCategoryController::class, 'forceDelete'])->name('admin.category.forceDelete');
-    //Админка на Теги
-    Route::get('/admin/tag', [AdminTagController::class, 'index'])->name('admin.tag');
-    Route::get('/admin/tag/trash', [AdminTagController::class, 'trash'])->name('admin.tag.trash');
-    Route::get('/admin/tag/create', [AdminTagController::class, 'create'])->name('admin.tag.create');
-    Route::get('/admin/tag/{id}', [AdminTagController::class, 'show'])->name('admin.tag.show');
-    Route::post('/admin/tag/store', [AdminTagController::class, 'store'])->name('admin.tag.store');
-    Route::get('/admin/tag/{id}/edit', [AdminTagController::class, 'edit'])->name('admin.tag.edit');
-    Route::post('/admin/tag/update', [AdminTagController::class, 'update'])->name('admin.tag.update');
-    Route::get('/admin/tag/{id}/destroy', [AdminTagController::class, 'destroy'])->name('admin.tag.destroy');
-    Route::get('/admin/tag/restore/{id}', [AdminTagController::class, 'restore'])->name('admin.tag.restore');
-    Route::get('/admin/tag/forceDelete/{id}', [AdminTagController::class, 'forceDelete'])->name('admin.tag.forceDelete');
+        //Админка на посты
+        Route::prefix('post')->group(function () {
+            Route::get('/', [AdminPostController::class, 'index'])->name('admin.post');
+            Route::get('/trash', [AdminPostController::class, 'trash'])->name('admin.post.trash');
+            Route::get('/create', [AdminPostController::class, 'create'])->name('admin.post.create');
+            Route::get('/{id}', [AdminPostController::class, 'show'])->name('admin.post.show');
+            Route::post('/store', [AdminPostController::class, 'store'])->name('admin.post.store');
+            Route::get('/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.post.edit');
+            Route::post('/update', [AdminPostController::class, 'update'])->name('admin.post.update');
+            Route::get('/{id}/destroy', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
+            Route::get('/restore/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
+            Route::get('/forceDelete/{id}', [AdminPostController::class, 'forceDelete'])->name('admin.post.forceDelete');
+        });
+        //Админка на категории
+        Route::prefix('category')->group(function () {
+            Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category');
+            Route::get('/trash', [AdminCategoryController::class, 'trash'])->name('admin.category.trash');
+            Route::get('/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
+            Route::get('/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
+            Route::post('/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
+            Route::get('/{id}/edit', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+            Route::post('/update', [AdminCategoryController::class, 'update'])->name('admin.category.update');
+            Route::get('/{id}/destroy', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
+            Route::get('/restore/{id}', [AdminCategoryController::class, 'restore'])->name('admin.category.restore');
+            Route::get('/forceDelete/{id}', [AdminCategoryController::class, 'forceDelete'])->name('admin.category.forceDelete');
+        });
+        //Админка на Теги
+        Route::prefix('tag')->group(function () {
+            Route::get('/', [AdminTagController::class, 'index'])->name('admin.tag');
+            Route::get('/trash', [AdminTagController::class, 'trash'])->name('admin.tag.trash');
+            Route::get('/create', [AdminTagController::class, 'create'])->name('admin.tag.create');
+            Route::get('/{id}', [AdminTagController::class, 'show'])->name('admin.tag.show');
+            Route::post('/store', [AdminTagController::class, 'store'])->name('admin.tag.store');
+            Route::get('/{id}/edit', [AdminTagController::class, 'edit'])->name('admin.tag.edit');
+            Route::post('/update', [AdminTagController::class, 'update'])->name('admin.tag.update');
+            Route::get('/aid}/destroy', [AdminTagController::class, 'destroy'])->name('admin.tag.destroy');
+            Route::get('/restore/{id}', [AdminTagController::class, 'restore'])->name('admin.tag.restore');
+            Route::get('/forceDelete/{id}', [AdminTagController::class, 'forceDelete'])->name('admin.tag.forceDelete');
+        });
+    });
 
 });
 
 
-//Добавляем комемнты по уроку
-Route::get('/page/post', [PageController::class, 'index'])->name('page');
-Route::get('/page/{id}', [PageController::class, 'show'])->name('page.show');
-Route::post('/page/comment/{id}', [PageController::class, 'addComment'])->name('page.add.comment');
+//Добавляем комемнты по уроку + group + prefix
+Route::prefix('/page')->group(function () {
+    Route::get('/post', [PageController::class, 'index'])->name('page');
+    Route::get('/{id}', [PageController::class, 'show'])->name('page.show');
+    Route::post('/comment/{id}', [PageController::class, 'addComment'])->name('page.add.comment');
+});

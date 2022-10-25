@@ -28,7 +28,7 @@
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-primary">login</button>
-{{--                            <a href="" class="btn btn-success">New account</a>--}}
+                            <a href="{{ $url }}" class="fa-brands fa-square-git"></a>
                         </form>
                     </div>
                 </div>
