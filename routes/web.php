@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Oauth\GitHubController;
-use \App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\GeoIpController;
+use App\Http\Controllers\Admin\AgentIpController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\AdminCategoryController;
@@ -28,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 
 //main storage /
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/geo', [GeoIpController::class, 'index']);
+Route::get('/agent', [AgentIpController::class, 'index']);
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 
 
