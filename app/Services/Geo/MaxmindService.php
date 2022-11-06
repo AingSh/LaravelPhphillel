@@ -26,7 +26,6 @@ class MaxmindService implements GeoServiceInterface
     public function parse(string $ip): void
     {
         try {
-
             $this->_data = $this->_reader->country($ip);
         } catch (AddressNotFoundException $exception) {
 

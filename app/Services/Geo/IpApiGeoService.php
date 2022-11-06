@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 class IpApiGeoService implements GeoServiceInterface
 {
 
-
     /**
      * @param string $ip
      * @return void

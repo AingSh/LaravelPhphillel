@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-class AgentIpController
+use App\Http\Controllers\Controller;
+use App\Models\Agent;
+use donatj\UserAgent\UserAgentInterface;
+
+
+class AgentIpController extends Controller
 {
-    public function index()
+
+    public function index(UserAgentInterface $userAgent)
     {
-        dd('lol');
+        $browser = $userAgent->browser();
+        $os = $userAgent->platform();
+
+        Agent::create([
+            'os' => $os,
+            'browser' => $browser,
+        ]);
     }
+
 }
+

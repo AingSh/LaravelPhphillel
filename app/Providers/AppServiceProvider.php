@@ -5,7 +5,8 @@ namespace App\Providers;
 use App\Services\Geo\GeoServiceInterface;
 use App\Services\Geo\IpApiGeoService;
 use App\Services\Geo\MaxmindService;
-use GeoIp2\Database\Reader;
+use App\Services\Geo\UserAgentService;
+use donatj\UserAgent\UserAgentInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,10 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(UserAgentServiceInterface::class, function () {
-            return new UAParserService();
-//            return new IpApiGeoService();
+        $this->app->singleton(UserAgentInterface::class, function () {
+            return new UserAgentService();
         });
+
+//        $this->app->singleton(GeoServiceInterface::class, function () {
+////          return new MaxmindService();
+//            return new IpApiGeoService();
+//        });
     }
 
     /**
