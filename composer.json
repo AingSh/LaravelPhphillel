@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "alexander/user-agent-parser-hillel": "master",
         "donatj/phpuseragentparser": "^1.7",
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.5",
@@ -51,6 +52,11 @@
             "@php artisan key:generate --ansi"
         ]
     },
+    "repositories": [{
+        "type": "github",
+        "url": "https://github.com/AingSh/Package-userAgent-Hillel"
+    }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": []

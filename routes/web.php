@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 //main storage /
 Route::get('/', [HomeController::class, 'index'])->name('main');
 Route::get('/geo', [GeoIpController::class, 'index']);
-Route::get('/agent', [AgentIpController::class, 'index']);
+Route::get('/agents', [AgentIpController::class, 'index']);
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 
 
