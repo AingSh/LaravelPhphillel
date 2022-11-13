@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abac8b32c9763d37ba5add25c88b6fa0",
+    "content-hash": "10c5480b13aaf2ab7c9fd75a6a1b08a3",
     "packages": [
+        {
+            "name": "alexander-aingsh/package-hillel-geo-test",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AingSh/package-hillel-geo-test.git",
+                "reference": "6b4727c65a99b68f95ad7099dd4e578c58b8f342"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AingSh/package-hillel-geo-test/zipball/6b4727c65a99b68f95ad7099dd4e578c58b8f342",
+                "reference": "6b4727c65a99b68f95ad7099dd4e578c58b8f342",
+                "shasum": ""
+            },
+            "require": {
+                "geoip2/geoip2": "~2.0",
+                "guzzlehttp/guzzle": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AingSh\\Alexander\\PackageHillelGeoTest\\GeoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AingSh\\Alexander\\PackageHillelGeoTest\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "alexander",
+                    "email": "alex.shklyarenko22@gmail.com"
+                }
+            ],
+            "description": "test",
+            "support": {
+                "issues": "https://github.com/AingSh/package-hillel-geo-test/issues",
+                "source": "https://github.com/AingSh/package-hillel-geo-test/tree/v1.0.4"
+            },
+            "time": "2022-11-12T19:53:43+00:00"
+        },
         {
             "name": "alexander/user-agent-parser-hillel",
             "version": "dev-master",
