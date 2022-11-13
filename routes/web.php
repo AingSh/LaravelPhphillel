@@ -15,7 +15,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderByUserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +33,8 @@ Route::get('/', [HomeController::class, 'index'])->name('main');
 Route::get('/geo', [GeoIpController::class, 'index']);
 Route::get('/agents', [AgentIpController::class, 'index']);
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
-
+//mail test
+Route::get('/mail', [MailController::class, 'index']);
 
 //Юзер  роут , за автора  уже въехал +-
 Route::get('/user', [UserController::class, 'index'])->name('user');
