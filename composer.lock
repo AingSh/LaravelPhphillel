@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abac8b32c9763d37ba5add25c88b6fa0",
+    "content-hash": "ad55cf9e10a1eb40df4261988c9e66ef",
     "packages": [
+        {
+            "name": "aingshint/geo-service-interface",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AingSh/GeoServiceInterface-test.git",
+                "reference": "7ea457aaba886fcb9afb13ed7a9db9bdd6eeff75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AingSh/GeoServiceInterface-test/zipball/7ea457aaba886fcb9afb13ed7a9db9bdd6eeff75",
+                "reference": "7ea457aaba886fcb9afb13ed7a9db9bdd6eeff75",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Alexander\\GeoServiceInterface\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "alexander",
+                    "email": "alex.shklyarenko22@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/AingSh/GeoServiceInterface-test/issues",
+                "source": "https://github.com/AingSh/GeoServiceInterface-test/tree/master"
+            },
+            "time": "2022-11-13T11:46:50+00:00"
+        },
         {
             "name": "alexander/user-agent-parser-hillel",
             "version": "dev-master",
@@ -1144,6 +1181,54 @@
                 }
             ],
             "time": "2022-10-26T14:07:24+00:00"
+        },
+        {
+            "name": "ipapitest/ip-api-geo-service-package",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AingSh/IpApiGeoServicePackage.git",
+                "reference": "818a2e8335572184f6f3b2806a73ea150c06d8f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AingSh/IpApiGeoServicePackage/zipball/818a2e8335572184f6f3b2806a73ea150c06d8f7",
+                "reference": "818a2e8335572184f6f3b2806a73ea150c06d8f7",
+                "shasum": ""
+            },
+            "require": {
+                "aingshint/geo-service-interface": "master",
+                "geoip2/geoip2": "~2.0",
+                "guzzlehttp/guzzle": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AingShIp\\GeoIpServicePackage\\GeoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AingShIp\\GeoIpServicePackage\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "alexander",
+                    "email": "alex.shklyarenko22@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/AingSh/IpApiGeoServicePackage/issues",
+                "source": "https://github.com/AingSh/IpApiGeoServicePackage/tree/v1.0.6"
+            },
+            "time": "2022-11-13T12:22:05+00:00"
         },
         {
             "name": "laravel/framework",

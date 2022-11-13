@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use AingSh\Alexander\PackageHillelGeoTest\GeoServiceInterface;
+use Alexander\GeoServiceInterface\GeoServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Visit;
 use donatj\UserAgent\UserAgentInterface;
