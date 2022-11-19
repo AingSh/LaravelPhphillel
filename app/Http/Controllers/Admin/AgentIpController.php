@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Agents;
 use App\Models\Agent;
 use donatj\UserAgent\UserAgentInterface;
 
@@ -14,12 +15,9 @@ class AgentIpController extends Controller
     {
         $browser = $userAgent->browser();
         $os = $userAgent->platform();
-
-        Agent::create([
-            'os' => $os,
-            'browser' => $browser,
-        ]);
+        Agents::dispatch($os,$browser)->onQueue('parsing');
     }
+
 
 }
 

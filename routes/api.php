@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/postTEST', function () {
-    return Post::all();
-});
+Route::get('/all',[PostController::class,'all']);
+Route::get('/',[PostController::class,'index']);
+

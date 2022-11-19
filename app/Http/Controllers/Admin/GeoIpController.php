@@ -19,10 +19,10 @@ class GeoIpController extends Controller
 
         $ip = '93.75.136.251';
 
-        $ip = request()->ip();
-        if ($ip == '::1') {
-            $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
-        }
+//        $ip = request()->ip();
+//        if ($ip == '::1') {
+//            $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
+//        }
 
         $reader->parse($ip);
         $isoCode = $reader->getIsoCode();
