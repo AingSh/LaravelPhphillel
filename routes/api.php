@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/all',[PostController::class,'all']);
-Route::get('/',[PostController::class,'index']);
+Route::middleware('auth:sanctum')->get('/all', [PostController::class, 'all']);
+Route::get('/', [PostController::class, 'index']);
+Route::post('/token/create', [AuthController::class, 'createToken']);
 

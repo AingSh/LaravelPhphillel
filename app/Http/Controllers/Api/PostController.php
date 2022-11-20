@@ -12,10 +12,12 @@ class PostController extends Controller
 {
     public function index()
     {
-        return new PostResource(Post::orderByDesc('category_id')->first());
+        return new  PostResource(Post::orderByDesc('category_id')->first());
     }
+
     public function all()
     {
         return new PostCollection(Post::paginate(5));
     }
 }
+
